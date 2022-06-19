@@ -1,0 +1,47 @@
+<br />
+<div class="input-group mb-3" >
+  <input
+    type="text"
+    id="cityname"
+    [(ngModel)]="cityname"
+    class="form-control"
+    placeholder="Please write city (For Example=New York)"
+    aria-label="Recipient's username"
+    aria-describedby="button-addon2"
+  />
+  <button
+    class="btn btn-warning"
+    type="button"
+    id="button-addon3"
+    (click)="getCityWth()"
+  >
+    Search Weather
+  </button>
+</div>
+
+<br /><br />
+<div class="container">
+  <div class="row justify-content-center" *ngIf="citys && citys.length > 0">
+    <div class="col-2 m-3" *ngFor="let city of citys">
+      <div class="card" style="width: 18rem">
+        <img
+          src="{{ city.current.weather_icons }}"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ city.request.query }}</h5>
+          <p class="card-text">
+            {{ city.current.temperature }} °C, {{ city.location.localtime }},
+            <br />
+            Wind Speed: {{ city.current.wind_speed }}
+          </p>
+          <a href="#" class="btn btn-success">Go HomePage</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center" *ngIf="citys && citys.length == 0">
+    Şehir bulunamadı.
+  </div>
+</div>
